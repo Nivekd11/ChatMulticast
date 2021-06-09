@@ -18,10 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-/**
- *
- *  @author Aaron Antonio Garcia Gonzalez
- */
+
 public class Cliente extends javax.swing.JFrame implements Runnable, ActionListener, DocumentListener {
     public final static String GRUPO = "GRUPO";
     
@@ -37,7 +34,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     HashMap<String, String> conversaciones = new HashMap<>();//K = Nombre, V = Mensajes
     HashMap<String, JButton> usuarios = new HashMap<>(); //K = nombre , V = jbutton
     JButton grupo;
-    private final PanelFondo contenedor = new PanelFondo("/Interfaz/cuadro-blanco.png");
+    private final PanelFondo contenedor = new PanelFondo("/Interfaz/cuadro-azul.png");
     
     public Cliente() throws IOException {
         
@@ -93,7 +90,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass()
                         .getResource("/Interfaz/icono.png"));
-        setIconImage(icon);
+        
         iniciarChat();
         Enviar.addActionListener(this);
         Enviar.setEnabled(false);
@@ -219,7 +216,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     private void actualizarBotones()
     {
         JPanel panel = new JPanel(new GridLayout(50,0));
-        panel.setBackground(Color.WHITE);
+        panel.setBackground(Color.BLACK);
         panel.add(grupo);
         Collection<JButton> usuariosConectados = usuarios.values();
         for (JButton u : usuariosConectados) 
@@ -239,7 +236,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
             conversaciones.put(nombre, nombre + " ha iniciado sesión");
             JButton b = new JButton(nombre);
             b.setForeground(Color.white);
-            b.setBackground(new Color(234,161,27));
+            b.setBackground(new Color(0,204,204));
             b.addActionListener(this);
             usuarios.put(nombre, b);
             return false;
@@ -257,46 +254,80 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
         jScrollPane3 = new javax.swing.JScrollPane();
         Texto = new javax.swing.JTextArea();
         Enviar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
 
+        Conversacion.setBackground(new java.awt.Color(0, 204, 204));
+        Conversacion.setForeground(new java.awt.Color(0, 0, 0));
+        Conversacion.setCaretColor(new java.awt.Color(102, 204, 255));
+        Conversacion.setDisabledTextColor(new java.awt.Color(255, 204, 204));
+        Conversacion.setSelectedTextColor(new java.awt.Color(102, 102, 255));
         jScrollPane2.setViewportView(Conversacion);
+        Conversacion.setBackground(new Color(255,204,205));
 
         UsuariosConectados.setBackground(new java.awt.Color(254, 254, 254));
 
+        Texto.setBackground(new java.awt.Color(255, 255, 204));
         Texto.setColumns(20);
         Texto.setRows(5);
         jScrollPane3.setViewportView(Texto);
+        Texto.setBackground(new Color(255,255,204));
 
         Enviar.setText("Enviar");
+
+        jLabel1.setFont(new java.awt.Font("Juice ITC", 1, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ChatMulticast");
+
+        jLabel2.setFont(new java.awt.Font("Lucida Console", 1, 24)); // NOI18N
+        jLabel2.setText("Mensaje:");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Console", 1, 24)); // NOI18N
+        jLabel3.setText("Chat:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UsuariosConectados)
-                    .addComponent(Enviar, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Enviar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                            .addComponent(UsuariosConectados, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(UsuariosConectados)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Enviar)))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UsuariosConectados, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(Enviar)
                 .addContainerGap())
         );
 
@@ -346,6 +377,9 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     private javax.swing.JButton Enviar;
     private javax.swing.JTextArea Texto;
     private javax.swing.JScrollPane UsuariosConectados;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
@@ -390,7 +424,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
         {
             JButton b = (JButton) ae.getSource();
             b.setForeground(Color.white);
-            b.setBackground(new Color(59,89,152));
+            b.setBackground(new Color(204,0,205));
             nombreDestino = b.getText();
             Conversacion.setText(am.formatoAMensaje(conversaciones.get(nombreDestino)));
             this.setTitle(nombre + " - " + nombreDestino);
