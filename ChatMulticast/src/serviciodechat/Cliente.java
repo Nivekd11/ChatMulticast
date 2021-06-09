@@ -34,7 +34,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     HashMap<String, String> conversaciones = new HashMap<>();//K = Nombre, V = Mensajes
     HashMap<String, JButton> usuarios = new HashMap<>(); //K = nombre , V = jbutton
     JButton grupo;
-    private final PanelFondo contenedor = new PanelFondo("/Interfaz/cuadro-azul.png");
+    private final PanelFondo contenedor = new PanelFondo("../Interfaz/cuadro-blanco.png");
     
     public Cliente() throws IOException {
         

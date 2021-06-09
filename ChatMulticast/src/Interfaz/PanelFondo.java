@@ -12,8 +12,7 @@ public class PanelFondo extends javax.swing.JPanel{
     {
         if (nombreImagen != null) {
             imagen = new ImageIcon(
-                   getClass().getResource(nombreImagen)
-                   ).getImage();
+                   getClass().getResource(nombreImagen)).getImage();
         } else {
             imagen = null;
         }
