@@ -90,19 +90,13 @@ public class AdministradorDeOperaciones
         cl.send(packet); 
     }
     
-    /**
-     * La práctica solicita etiquetas para hacer operaciones 
-     * pero en el datagrama es mas elegante envíar el numero de
-     * operacion y tener un responsable que ejecute la operacion
-     * correspondiente
-     * @return 
-     */
+  
     public Mensaje recibe() throws IOException
     {
         DatagramPacket packet = new DatagramPacket(new byte[TAM_BUFFER], TAM_BUFFER);
         cl.receive(packet);
         String mensaje = new String(packet.getData());
-        System.out.print(mensaje + "\n");
+        //System.out.print(mensaje + "\n");
         return getMensaje(mensaje);
     }
     

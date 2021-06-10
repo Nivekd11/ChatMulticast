@@ -23,7 +23,7 @@ public class AnalisisDeMensajes {
 
     // Loco -> _loco_
     private final String LOCO = " <img src=" + this.getClass().getClassLoader()
-            .getResource("Emojis/loco.gif").toString()
+            .getResource("Emojis/loco.png").toString()
             + " width='30' height='30' alt='emoji'> ";
 
     // Homero -> _Homero_
@@ -61,27 +61,27 @@ public class AnalisisDeMensajes {
                         if (c == ')') {
                             msj += RISA;
                             i += 3;
-                            System.out.print("imgRisa");
+                           // System.out.print("imgRisa");
                         } else if (c == 'o') {
                             msj += AMOR;
                             i += 3;
-                            System.out.print("imgaAmor");
+                        //    System.out.print("imgaAmor");
                         } else if (c == 'S') {
                             msj += ENOJO;
                             i += 3;
-                            System.out.print("imgEnojo");
+                         //   System.out.print("imgEnojo");
                         } else if (c == '(') {
                             msj += TRISTE;
                             i += 3;
-                            System.out.print("imgTriste");
+                         //   System.out.print("imgTriste");
                         } else if (c == '3') {
                             msj += GATO;
                             i += 3;
-                            System.out.print("imgGatito");
+                         //   System.out.print("imgGatito");
                         } else if (c == 'p') {
                             msj += LENGUA;
                             i += 3;
-                            System.out.print("imgLengua");
+                         //   System.out.print("imgLengua");
                         }
                         else {
                             msj += ' ';
@@ -98,7 +98,7 @@ public class AnalisisDeMensajes {
 
                             msj += LOCO;
                             i += 7;
-                            System.out.print("imgloco");
+                           // System.out.print("imgloco");
                         }
                     } else if (mensaje.charAt(i + 8) == '_') {
                         if ((mensaje.charAt(i + 2) == 'H')
@@ -110,7 +110,7 @@ public class AnalisisDeMensajes {
 
                             msj += HOMERO;
                             i += 9;
-                            System.out.print("imghomero");
+                           // System.out.print("imghomero");
                         }
                     } else if (mensaje.charAt(i + 9) == '_') {
                         if ((mensaje.charAt(i + 2) == 'A')
@@ -123,7 +123,7 @@ public class AnalisisDeMensajes {
 
                             msj += ABRAZO;
                             i += 10;
-                            System.out.print("imgAbrazo");
+                        //    System.out.print("imgAbrazo");
                         }
                     } else {
                         msj += ' ';

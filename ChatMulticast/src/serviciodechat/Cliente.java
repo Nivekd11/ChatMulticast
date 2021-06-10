@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -30,10 +31,12 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     
     private String nombre = null;
     private String nombreDestino = "";
+    
     private AnalisisDeMensajes am;
     HashMap<String, String> conversaciones = new HashMap<>();//K = Nombre, V = Mensajes
     HashMap<String, JButton> usuarios = new HashMap<>(); //K = nombre , V = jbutton
     JButton grupo;
+    public ArrayList<Mensaje> listaMensajes = new ArrayList<Mensaje>();
     private final PanelFondo contenedor = new PanelFondo("../Interfaz/cuadro-blanco.png");
     
     public Cliente() throws IOException {
@@ -104,20 +107,20 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     
     private void mostrarMensaje(Mensaje mensaje)
     {
-        System.out.print("ID: " + mensaje.getId() + "\n");
+       // System.out.print("ID: " + mensaje.getId() + "\n");
         if(mensaje.getNombreOrigen() != null)
         {
-            System.out.print("Origen: " + mensaje.getNombreOrigen() + "\n");
+       //     System.out.print("Origen: " + mensaje.getNombreOrigen() + "\n");
         }
         
         if(mensaje.getNombreDestino() != null)
         {
-            System.out.print("Destino: " + mensaje.getNombreDestino() + "\n");
+        //    System.out.print("Destino: " + mensaje.getNombreDestino() + "\n");
         }
         
         if(mensaje.getMensaje() != null)
         {
-            System.out.print("Mensaje: " + mensaje.getMensaje() + "\n");
+       //     System.out.print("Mensaje: " + mensaje.getMensaje() + "\n");
         }
     }
     
@@ -160,6 +163,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     
     private void visualizarMensajePublico(Mensaje mensaje)
     {
+        
         String   msj = conversaciones.get(GRUPO) + "<br>" + mensaje.getNombreOrigen() 
                   + ": " + mensaje.getMensaje();
         
@@ -177,11 +181,13 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
     }
     
     private void visualizarMensajePrivado(Mensaje mensaje)
-    {
-        conversaciones.put(mensaje.getNombreOrigen(), mensaje.getMensaje() );
+    {   
+        String   msj = conversaciones.get(mensaje.getNombreOrigen()) + "<br>" + mensaje.getNombreOrigen() 
+                  + ": " + mensaje.getMensaje();                
+        conversaciones.put(mensaje.getNombreOrigen(), msj ); //Visualiza el mensaje;
         if(nombreDestino.equals(mensaje.getNombreOrigen()))
         {
-            Conversacion.setText(am.formatoAMensaje(mensaje.getMensaje()));
+            Conversacion.setText(am.formatoAMensaje(msj));
             usuarios.get(mensaje.getNombreOrigen()).setForeground(Color.white);
             usuarios.get(mensaje.getNombreOrigen()).setBackground(new Color(59,89,152));
         }else
@@ -320,7 +326,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
@@ -427,7 +433,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable, ActionListe
             b.setBackground(new Color(204,0,205));
             nombreDestino = b.getText();
             Conversacion.setText(am.formatoAMensaje(conversaciones.get(nombreDestino)));
-            this.setTitle(nombre + " - " + nombreDestino);
+            this.setTitle(nombre + " Habla con:  " + nombreDestino);
             habilitarEnvio();
         }
     }
