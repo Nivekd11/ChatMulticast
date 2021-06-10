@@ -1,9 +1,6 @@
 package serviciodechat;
 
-/**
- *
- * @author miguel angel amador nava
- */
+
 public class AnalisisDeMensajes {
 
     // Risa -> :)
