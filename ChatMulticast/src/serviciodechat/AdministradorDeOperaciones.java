@@ -5,10 +5,6 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
-/**
- *
- *  @author Aaron Antonio Garcia Gonzalez
- */
 public class AdministradorDeOperaciones 
 {
     private final String IP = "230.1.1.1";
