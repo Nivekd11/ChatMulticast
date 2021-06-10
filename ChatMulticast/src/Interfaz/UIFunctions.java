@@ -3,10 +3,7 @@ package Interfaz;
 import static java.awt.Frame.ICONIFIED;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-/**
- *
- * @author Aaron Antonio Garcia Gonzalez
- */
+
 
 public class UIFunctions {
     
