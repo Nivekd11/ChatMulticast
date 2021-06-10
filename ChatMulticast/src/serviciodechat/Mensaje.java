@@ -1,10 +1,6 @@
 
 package serviciodechat;
 
-/**
- *
- *  @author Aaron Antonio Garcia Gonzalez
- */
 public class Mensaje 
 {
 
